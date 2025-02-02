@@ -1,0 +1,42 @@
+<div [class]="isHeroVillain() ? 'hero-item hero-villain' : 'hero-item'">
+
+  <div class="image">
+    <img [src]="hero().image" alt="Angular Logo">
+  </div>
+
+  <div class="details">
+    <div class="hero-name">{{ hero().name }}
+
+      @if(isHeroVillain()){ 🦹} @else{ 🦸 }
+
+    </div>
+  </div>
+
+
+  @for ( powerstats of hero().powerstats | keyvalue; track powerstats.key) {
+
+
+  <div class="hero-power-stats">
+
+    <span> <b>{{ powerstats.key | titlecase }}:</b> {{ powerstats.value }} </span>
+
+    <div class="hero-powerstats-buttons">
+
+      <button [disabled]="powerstats.value == 100 "
+              (click)="incrementPowerStats(powerstats.key)">+</button>
+
+      <button [disabled]="powerstats.value == 0 "
+              (click)="decrementPowerStats(powerstats.key)">-</button>
+
+    </div>
+
+  </div>
+
+
+  }
+
+
+
+
+
+</div>
